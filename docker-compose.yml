@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command: "gunicorn -b 0.0.0.0:5000 pubgenie.application:app"
+    ports:
+    - "5000:5000"

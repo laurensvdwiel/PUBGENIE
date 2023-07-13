@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  web:
+    command: "gunicorn -b 0.0.0.0:5000 pubgenie.application:app --reload"
+    volumes:
+      - .:/app
