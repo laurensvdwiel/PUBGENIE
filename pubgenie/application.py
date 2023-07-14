@@ -1,9 +1,5 @@
 from flask import Flask
+from pubgenie.presentation.web.routes import bp
 
 app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-  return 'Hello from Docker within PyCdfgdfgaarm!'
-
-
+app.register_blueprint(bp)
