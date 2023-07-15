@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>PUBGENIE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script>
         function submitForm(event) {
             var form = document.getElementById('queryForm');
@@ -23,11 +24,11 @@
     <img src="{{ url_for('static', filename='img/pubgenie_logo_1250x1250.png') }}" alt="PUBGENIE Logo" style="width: 250px; height: 250px;">
     <form id="queryForm" method="post" onsubmit="submitForm(event)">
         <select id="queryType" name="query_type">
-            <option value="gene">Gene</option>
-            <option value="pos">Position</option>
+            <option value="gene" {% if query_type == 'gene' %}selected{% endif %}>Gene</option>
+            <option value="pos" {% if query_type == 'pos' %}selected{% endif %}>Position</option>
         </select>
-        <input id="userInput" type="text" name="user_input" required>
-        <input type="submit" value="Submit">
+        <input id="userInput" type="text" name="user_input" value="{{ user_input or '' }}" required>
+        <input type="submit" value="Submit" class="button">
     </form>
     {% if result %}
     <div>{{ result|safe }}</div>
