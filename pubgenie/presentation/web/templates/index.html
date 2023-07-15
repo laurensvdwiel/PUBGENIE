@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>PUBGENIE</title>
-    </head>
-    <body>
-        <h1>Welcome to PUBGENIE</h1>
-        <form action="/query" method="post">
-            <label for="user_input">Enter your query:</label><br>
-            <input type="text" id="user_input" name="user_input"><br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+<head>
+    <title>PUBGENIE</title>
+    <script>
+        function submitForm(event) {
+            var form = document.getElementById('queryForm');
+            var userInput = document.getElementById('userInput').value;
+            var queryType = document.getElementById('queryType').value;
+            if (queryType === 'pos') {
+                var parts = userInput.split('-');
+                if (parts.length !== 2 || isNaN(parts[1])) {
+                    alert('Please enter a position in the format X-YYYYY, where X is a chromosome and YYYYY is a number.');
+                    event.preventDefault();
+                    return;
+                }
+            }
+            form.action = "/pubgenie/" + queryType + "/" + userInput;
+        }
+    </script>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='img/pubgenie_logo_1250x1250.png') }}" alt="PUBGENIE Logo" style="width: 250px; height: 250px;">
+    <form id="queryForm" method="post" onsubmit="submitForm(event)">
+        <select id="queryType" name="query_type">
+            <option value="gene">Gene</option>
+            <option value="pos">Position</option>
+        </select>
+        <input id="userInput" type="text" name="user_input" required>
+        <input type="submit" value="Submit">
+    </form>
+    {% if result %}
+    <div>{{ result|safe }}</div>
+    {% endif %}
+</body>
 </html>
