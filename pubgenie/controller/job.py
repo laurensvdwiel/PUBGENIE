@@ -26,6 +26,7 @@ def execute_query(user_input):
     workbook = load_workbook(filename='/data/1-s2.0-S0092867419313984-mmc1.xlsx', read_only=True)
     sheet = workbook.worksheets[4]  # Get the 5th sheet
 
+    # Get the data
     data = []
     for row in sheet.iter_rows(values_only=True):
         data.append(row)
