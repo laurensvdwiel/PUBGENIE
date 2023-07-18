@@ -8,6 +8,9 @@ RUN mkdir /data
 RUN wget -P /data https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-020-2832-5/MediaObjects/41586_2020_2832_MOESM3_ESM.txt
 # Satterstrom et al. 2020
 RUN wget -P /data https://ars.els-cdn.com/content/image/1-s2.0-S0092867419313984-mmc1.xlsx
+# DeNovoDB Turner et al. 2017
+RUN wget -P /data https://denovo-db.gs.washington.edu/denovo-db.non-ssc-samples.variants.tsv.gz
+
 
 WORKDIR /app
 
