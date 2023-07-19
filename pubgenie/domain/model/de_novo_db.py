@@ -12,7 +12,7 @@ def gene_query(user_input, filename):
 
     lines = output.decode('utf-8').split('\n')
     headers = lines[1].split('\t')
-    data_rows = [line.split('\t') for line in lines[1:] if line]
+    data_rows = [line.split('\t') for line in lines[2:] if line]
 
     table_html = '<h2><a href="https://doi.org/10.1093/nar/gkw865" target="_blank">de-novo-db: Turner <i>et al.</i> NAR 2017</a></h2>'
     table_html += '<table>\n'
